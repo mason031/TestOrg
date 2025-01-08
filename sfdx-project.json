@@ -1,0 +1,24 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": false
+    },
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "my-package",
+      "default": true,
+      "package": "myPackage",
+      "versionDescription": ""
+    }
+  ],
+  "name": "SalesforceDevPractice",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "62.0",
+  "packageAliases": {
+    "myPackage": "0Hobm0000000EvpCAE",
+    "myPackage@0.1.0-1": "04tbm0000005P0zAAE"
+  }
+}
