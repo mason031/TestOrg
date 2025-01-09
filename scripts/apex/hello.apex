@@ -10,5 +10,7 @@ System.debug('Hello World!');
 System.debug('My name is ' + tempvar);
 
 Calculator calc = new Calculator();
-System.debug(calc.Add(1,2));
-System.debug(calc.Mod(7,3));
+
+System.debug(DataLord.NumAccounts());
+System.debug(DataLord.BigLeadSources());
+
