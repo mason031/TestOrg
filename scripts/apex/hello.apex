@@ -13,4 +13,7 @@ Calculator calc = new Calculator();
 
 System.debug(DataLord.NumAccounts());
 System.debug(DataLord.BigLeadSources());
+System.debug(DataLord.TomFinder());
+System.debug(DataLord.AandOFinder());
+System.debug(DataLord.PhoneNumberFinder());
 

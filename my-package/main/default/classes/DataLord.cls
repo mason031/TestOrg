@@ -45,6 +45,21 @@ public with sharing class DataLord {
         }
         return results;
     }
+
+    public static List<List<sObject>> TomFinder(){
+        return [FIND 'Tom' RETURNING Contact(Name), Lead(Name)];
+    }
+
+    public static List<Account> AandOFinder(){
+        List<List<sObject>> newObject = [FIND 'a* AND o*' RETURNING Account(name)];
+        List<Account> act = newObject[0];
+        return act;
+    }
+
+    public static List<List<sObject>> PhoneNumberFinder(){
+        List<List<sObject>> newObject = [FIND '*1000' IN PHONE FIELDS RETURNING Account(Name), Contact(Name), Lead(Name)];
+        return newObject;
+    }
     
     
 }
