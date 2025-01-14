@@ -107,10 +107,10 @@ public with sharing class DataLord {
         AssignHomes();
         System.debug('Number of contacts at finish: ' + [SELECT COUNT() FROM Contact]);
         System.debug('Number of accounts at finish: ' + [SELECT COUNT() FROM Account]);
-        List<AggregateResult> agg = [SELECT Account.Name, COUNT(Id) Num FROM Contact GROUP BY AccountId, Account.Name ORDER BY COUNT(Id) DESC];
+        List<AggregateResult> agg = [SELECT Account.Name Name, COUNT(Id) Num FROM Contact GROUP BY AccountId, Account.Name ORDER BY COUNT(Id) DESC];
         List<String> results = new List<String>();
         for(AggregateResult a: agg){
-            results.add(a.get('Account.Name ')+'has '+a.get('Num')+' amount of contacts');
+            results.add(a.get('Name')+' has '+a.get('Num')+' amount of contacts');
         }
         System.debug('Number of related contacts for each account' + results);
         Database.rollback(save);
