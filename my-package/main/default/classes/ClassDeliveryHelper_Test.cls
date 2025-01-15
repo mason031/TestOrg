@@ -131,8 +131,30 @@ private class ClassDeliveryHelper_Test {
 
     @isTest
     public static void changeCoursePositive(){
-        
+        User salesTeamMember = [SELECT Id FROM User WHERE Username = 'jdoeSalesTeam@12345.com'];
+        System.runAs(salesTeamMember){
+            Class_Delivery__c cd = ClassDeliveryHelper.createClassDelivery('Salesforce');
+            ClassDeliveryHelper.changeCourse(cd.Id, 'C#');
+            
+            Class_Delivery__c cdCheck = [SELECT Id, Course__c FROM Class_Delivery__c WHERE Id = :cd.Id LIMIT 1];
+            Assert.areEqual('C#', cdCheck.Course__c);
+        }
     }
+
+    @isTest
+    public static void changeCourseNegative(){
+        User nonSalesTeam = [SELECT Id FROM User WHERE Username = 'jdoeStandard@12345.com'];
+        System.runAs(nonSalesTeam){
+            Class_Delivery__c cd = new Class_Delivery__c(Course__c = 'Salesforce');
+            insert cd;
+
+            ClassDeliveryHelper.changeCourse(cd.Id, 'C#');
+            
+            Class_Delivery__c cdCheck = [SELECT Id, Course__c FROM Class_Delivery__c WHERE Id = :cd.Id LIMIT 1];
+            Assert.areEqual('Salesforce', cdCheck.Course__c);
+        }
+    }
+    
 
     
 }

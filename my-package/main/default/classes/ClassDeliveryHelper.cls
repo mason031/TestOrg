@@ -1,4 +1,4 @@
-public with sharing class ClassDeliveryHelper {
+public without sharing class ClassDeliveryHelper {
     public ClassDeliveryHelper() {
 
     }
@@ -30,10 +30,11 @@ public with sharing class ClassDeliveryHelper {
     }
 
     public static void changeCourse(Id deliveryId, String course){
-        Class_Delivery__c cd = [SELECT Id FROM Class_Delivery__c WHERE Id = :deliveryId];
+        Class_Delivery__c cd = [SELECT Id, Course__c FROM Class_Delivery__c WHERE Id = :deliveryId];
         cd.Course__c = course;
         if(Schema.SObjectType.Class_Delivery__c.fields.Course__c.isUpdateable()){
             update cd;
+
         }
         else{
             cd.addError('You need proper permissions to update');
